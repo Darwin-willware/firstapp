@@ -18,12 +18,19 @@ class learnToBuild extends StatelessWidget {
         height: 1000,
         color: Colors.blueGrey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children:<Widget> [
              Container( color: Colors.deepOrangeAccent,height: 100,width: 100,),
-             Container( color: const Color.fromARGB(255, 228, 225, 215),height: 100,width: 100,),
-             Container( color: Color.fromARGB(255, 32, 145, 75),height: 100,width: 100,),
+
+             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+               Container(color: Colors.greenAccent , height: 50, width: 50,),
+              Container(color: Colors.redAccent, height: 50, width: 50,),
+               Container(color: Color.fromARGB(255, 138, 26, 119), height: 50, width: 50,),
+              ],
+             )
           ],
         ),
       ) ,
