@@ -14,26 +14,29 @@ class learnToBuild extends StatelessWidget {
         ),),
         backgroundColor: Colors.tealAccent,
       ),
-      body:Container(
-        height: 1000,
-        color: Colors.blueGrey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children:<Widget> [
-             Container( color: Colors.deepOrangeAccent,height: 100,width: 100,),
-
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-               Container(color: Colors.greenAccent , height: 50, width: 50,),
-              Container(color: Colors.redAccent, height: 50, width: 50,),
-               Container(color: Color.fromARGB(255, 138, 26, 119), height: 50, width: 50,),
-              ],
-             )
-          ],
-        ),
-      ) ,
+      body:Center(
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor:MaterialStateProperty.all<Color>(Colors.deepOrangeAccent),
+        //      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+        // (Set<MaterialState> states) {
+        //   if (states.contains(MaterialState.hovered))
+        //     return const Color.fromARGB(255, 47, 33, 243).withOpacity(0.04);
+        //   if (states.contains(MaterialState.focused) ||
+        //       states.contains(MaterialState.pressed))
+        //     return const Color.fromARGB(255, 72, 33, 243).withOpacity(0.12);
+        //   return null; // Defer to the widget's default.
+        // },
+        //   ),
+            overlayColor: MaterialStateColor.resolveWith((states) => const Color.fromARGB(255, 73, 54, 244)),
+          ),
+          onPressed: (){}, 
+          child: Text("Click Me",
+          style: TextStyle(color: Colors.black,
+          fontSize: 22,),
+          )
+          ),
+      ),
       );
   }
 }
