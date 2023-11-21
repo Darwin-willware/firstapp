@@ -1,6 +1,8 @@
 import 'package:firstapp/flutt_learner/access_local.dart';
+import 'package:firstapp/flutt_learner/chewyie.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/flutt_learner/video_player_page.dart';
+import 'package:firstapp/flutt_learner/get_local_videos.dart';
 void main(){
   runApp(const FetchApp());
 }
@@ -19,7 +21,7 @@ class FetchApp extends StatelessWidget{
   Widget build(BuildContext context){
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyOwnPlayer(),
+      home: MyLocalVideoGetter(),
     );
   }
 }
