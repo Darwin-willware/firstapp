@@ -19,7 +19,7 @@ class FetchApp extends StatelessWidget{
   Widget build(BuildContext context){
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: getlocalAccess(),
+      home: MyOwnPlayer(),
     );
   }
 }

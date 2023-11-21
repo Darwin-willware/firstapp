@@ -1,5 +1,6 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
@@ -27,13 +28,11 @@ class _MyOwnPlayerState extends State<MyOwnPlayer> {
   String assetVideoPath = "assets/videos/one.mp4";
 
   late bool isLoading = true;
-  late Future<String> filepath = _localPath;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     initializeVideoPlayer(currentSource);
-    log("HEY LET ME KNOW :: $filepath");
   }
 
   @override
@@ -79,7 +78,6 @@ class _MyOwnPlayerState extends State<MyOwnPlayer> {
           onPressed: (){
             currentSource = source.Network;
             initializeVideoPlayer(currentSource);
-           print("HEY LET ME KNOW:: $filepath");
           }),
                   MaterialButton(
           color: Colors.blueGrey,
@@ -91,9 +89,18 @@ class _MyOwnPlayerState extends State<MyOwnPlayer> {
           onPressed: (){
             currentSource = source.Asset;
             initializeVideoPlayer(currentSource);
-            print("HEY LET ME KNOW:: $filepath.toString()");
-    print(filepath.toString());
-          })
+          }),
+          ElevatedButton(onPressed: () async{
+            FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+             if (result != null) {
+              File file = File(result.files.single.path!);
+              this.assetVideoPath = file.toString();
+              Text(file.toString(),);
+             } else {
+             // User canceled the picker
+              }
+          }, child: Text("Fetch video"))
       ],
     );
   }
@@ -127,32 +134,5 @@ class _MyOwnPlayerState extends State<MyOwnPlayer> {
       context: context, videoPlayerController: _vidPlayerContoller);
   }
   
-   Future<String> get _localPath async {
-  final directory = await getApplicationDocumentsDirectory();
 
-  return directory.path;
-     }
-  Future<File> get _localFile async {
-  final path = await _localPath;
-  return File('$path/counter.txt');
-     }
-   Future<File> writeCounter(int counter) async {
-  final file = await _localFile;
-
-  // Write the file
-  return file.writeAsString('$counter');
-     }
-  Future<int> readCounter() async {
-  try {
-    final file = await _localFile;
-
-    // Read the file
-    final contents = await file.readAsString();
-
-    return int.parse(contents);
-  } catch (e) {
-    // If encountering an error, return 0
-    return 0;
-  }
-     }
 }

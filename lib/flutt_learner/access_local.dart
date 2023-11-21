@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class getlocalAccess extends StatefulWidget {
@@ -31,7 +33,11 @@ class _getlocalAccessState extends State<getlocalAccess> {
 
           image.isEmpty?Container(
 
-          ):Image.file(File(image)),
+          ):Image.file(
+            File(image),
+            height: 100,
+            width: 300,
+            ),
           //pick a file first
           ElevatedButton(onPressed: ()async{
             //get permission
@@ -45,11 +51,25 @@ class _getlocalAccessState extends State<getlocalAccess> {
           }, 
           child: Text("select  a image")),
           ElevatedButton(onPressed: () async{
+            var status = await Permission.storage.request();
+            //if(status==PermissionStatus.granted){
             var read = await File(image).readAsBytes();
-            var newfile = await File("/storage/emulated/filename.png").create(recursive: true);
+            var newfile = await File("/Internal Storage/pictures/filename.png").create(recursive: true);
             await newfile.writeAsBytes(read);
+           // }
           }, 
-          child: Text("create file and write that file as above file")),
+          child: Text("create file and write that file as above file")
+          ),
+          ElevatedButton(onPressed: () async{
+            FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+             if (result != null) {
+              File file = File(result.files.single.path!);
+              Text(file.toString(),);
+             } else {
+             // User canceled the picker
+              }
+          }, child: Text("Fetch video"))
         ],
       ),
     );
