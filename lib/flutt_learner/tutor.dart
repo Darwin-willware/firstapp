@@ -14,30 +14,26 @@ class learnToBuild extends StatelessWidget {
         ),),
         backgroundColor: Colors.tealAccent,
       ),
-      body: Center(
-        child: Text("LearnStacks With G7",
-        style: TextStyle(
-          fontSize: 35.0,
-          color: Color.fromARGB(255, 168, 52, 204),
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.w900,
-          letterSpacing: 1.0,
-          wordSpacing: 5.0,
-          shadows: [
-            Shadow(
-              color: Colors.black,
-              offset: Offset(2, 4),
-              blurRadius: 2,
-            )
+      body: Container(
+        height: 1000,
+        color: Colors.grey,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+         // textBaseline: TextBaseline.alphabetic,
+         textBaseline: TextBaseline.ideographic,
+          children:<Widget> [
+            Text("Hey from g7",
+            style: TextStyle(fontSize:32.0),),
+                        Text("Hey from g7",
+            style: TextStyle(fontSize:12.0),)
+            //  Container( color: Colors.deepOrangeAccent, height: 100, width: 100,),
+            //  Container( color: Colors.amberAccent, height: 100, width: 100,),
+            //  Container( color: Colors.blueAccent, height: 100, width: 100,),
+
           ],
-          //decoration: TextDecoration.underline,
-          //decoration: TextDecoration.overline,
-          decoration: TextDecoration.lineThrough,
-          decorationColor: Colors.amberAccent,
-          decorationStyle: TextDecorationStyle.double,
         ),
-        ),
-      ),
-    );
+      ) ,
+      );
   }
 }
