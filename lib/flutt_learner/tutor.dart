@@ -9,30 +9,24 @@ class learnToBuild extends StatelessWidget {
     double _volume = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Icon Button Widget",
-        style: TextStyle(
+        title: Text("custom Ink Widget",
+        style: TextStyle( 
           color: Colors.redAccent
         ),),
         backgroundColor: Colors.tealAccent,
       ),
-      body:Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:<Widget> [
-         Center(
-           child: IconButton(
-            onPressed: (){
-              _volume +=10;
-            },
-             icon: Icon(Icons.volume_up),
-             iconSize: 50,
-             color: Colors.blueAccent,),
-         ),
-         Text('Volume: ${_volume}',
-         style: TextStyle(
-          fontSize: 24,
-         ),)
-        ],
-      ) ,
+      body:Center(
+        child: Ink(
+          decoration: ShapeDecoration(
+            color: Colors.blueAccent,
+            shape: CircleBorder()
+            ),
+            child: IconButton(
+              icon: Icon(Icons.add),
+              color: Colors.white,
+              onPressed: (){},),
+        ),
+      ),
       );
   }
 }
