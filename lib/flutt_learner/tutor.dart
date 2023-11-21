@@ -14,23 +14,16 @@ class learnToBuild extends StatelessWidget {
         ),),
         backgroundColor: Colors.tealAccent,
       ),
-      body: Container(
+      body:Container(
         height: 1000,
-        color: Colors.grey,
-        child: Row(
+        color: Colors.blueGrey,
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-         // textBaseline: TextBaseline.alphabetic,
-         textBaseline: TextBaseline.ideographic,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children:<Widget> [
-            Text("Hey from g7",
-            style: TextStyle(fontSize:32.0),),
-                        Text("Hey from g7",
-            style: TextStyle(fontSize:12.0),)
-            //  Container( color: Colors.deepOrangeAccent, height: 100, width: 100,),
-            //  Container( color: Colors.amberAccent, height: 100, width: 100,),
-            //  Container( color: Colors.blueAccent, height: 100, width: 100,),
-
+             Container( color: Colors.deepOrangeAccent,height: 100,width: 100,),
+             Container( color: const Color.fromARGB(255, 228, 225, 215),height: 100,width: 100,),
+             Container( color: Color.fromARGB(255, 32, 145, 75),height: 100,width: 100,),
           ],
         ),
       ) ,
