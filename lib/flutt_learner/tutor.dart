@@ -9,34 +9,25 @@ class learnToBuild extends StatelessWidget {
     double _volume = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Rich Text Widget",
+        title: Text("Button Bars Widget",
         style: TextStyle( 
           color: Colors.redAccent
         ),),
         backgroundColor: Colors.tealAccent,
       ),
-      body:RichText(
-        text: TextSpan(
-          text: 'hey from hello to',
-          style: TextStyle(
-            color: Colors.purple,
-            fontSize: 29.0,
-            fontStyle: FontStyle.italic,
-            decoration: TextDecoration.underline,
-            decorationStyle: TextDecorationStyle.dotted
-          ),
-          children: <TextSpan>[
-            TextSpan(text: 'computer',
-            style: TextStyle(
-              color: Colors.black,
-              decoration: TextDecoration.none,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.normal
-            )),
-            TextSpan(text: 'from'),
-          ]
-          )
-          ),
+      body:Container(
+        child: ButtonBar(
+          alignment: MainAxisAlignment.center,
+          
+          children:<Widget> [
+            TextButton(onPressed: (){}, child: Text("login")),
+             IconButton(onPressed: (){}, icon: Icon(Icons.home)),
+            IconButton(onPressed: (){}, icon: Icon(Icons.add)),
+            IconButton(onPressed: (){}, icon: Icon(Icons.people)),
+            IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+          ],
+        ),
+      ),
       );
   }
 }
