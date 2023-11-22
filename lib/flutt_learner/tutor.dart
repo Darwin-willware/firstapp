@@ -1,84 +1,59 @@
 import 'package:flutter/material.dart';
 
-class learnToBuild extends StatelessWidget {
+class learnToBuild extends StatefulWidget {
   const learnToBuild({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FirstPage(),
-    );
-  }
+  State<learnToBuild> createState() => _learnToBuildState();
 }
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
-
+class _learnToBuildState extends State<learnToBuild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Page Routing",
-        style: TextStyle(
-          color: Colors.redAccent,
-        ),
-        ),
-        backgroundColor: Colors.tealAccent,
+        title: Text('OutlineD Button'),
       ),
       body: Center(
-        child: Text(" of Page 001",
-        style: TextStyle(
-          fontSize: 25.0,
-          fontWeight: FontWeight.bold,
-        ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.navigate_next),
-        onPressed: (){
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context)=>
-              SecondPage()
-              )
-          );
-        }),
-    );
-  }
-}
+        child: OutlinedButton(
+           style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.focused)) {
+              return Colors.grey;
+            }
+            return const Color.fromARGB(255, 105, 168, 240);
+          }),
+          overlayColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.red;
+            }
+            return Colors.transparent;
+          }),
+          side: MaterialStateProperty.resolveWith((states) {
+            Color _borderColor;
 
-class SecondPage extends StatelessWidget {
-  const SecondPage({super.key});
+            if (states.contains(MaterialState.disabled)) {
+              _borderColor = Colors.greenAccent;
+            } else if (states.contains(MaterialState.pressed)) {
+              _borderColor = Colors.yellow;
+            } else {
+              _borderColor = Colors.pinkAccent;
+            }
 
-  @override
-  Widget build(BuildContext context) {
-     return Scaffold(
-      appBar: AppBar(
-        title: Text("Page Routing",
-        style: TextStyle(
-          color: Colors.redAccent,
+            return BorderSide(color: _borderColor, width: 5);
+          }),
+          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
+            return RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
+          }),
         ),
-        ),
-        backgroundColor: Colors.tealAccent,
+          onPressed: (){},
+         child: Padding(
+           padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
+           child: Text("Click Me"),
+         ),
+         
+         ),
       ),
-      body: Center(
-        child: Text(" of Page 002",
-        style: TextStyle(
-          fontSize: 25.0,
-          fontWeight: FontWeight.bold,
-        ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.navigate_next),
-        onPressed: (){
-          Navigator.of(context).pop(
-            MaterialPageRoute(
-              builder: (context)=>
-              FirstPage()
-              )
-          );
-        }),
     );
   }
 }
