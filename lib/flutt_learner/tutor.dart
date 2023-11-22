@@ -41,19 +41,66 @@ class _learnToBuildState extends State<learnToBuild> {
     return Scaffold(
          appBar: AppBar(
           backgroundColor: Colors.tealAccent,
-          title: Text("Bottom sheet(Alert) Widget",
+          title: Text("Single child Scroll view Widget",
           style: TextStyle(
             color: Colors.redAccent,
           ),),
          ),
-         body: Center(
-          child: ElevatedButton(onPressed: showBottom, 
-          child:Text(
-            "Click Me",
-             style: TextStyle(
-              fontSize: 18.0
+         body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+           child: Row(
+            children:<Widget> [
+             Container(
+              height: 200,
+              width: 150,
+              color: Colors.deepOrangeAccent,
              ),
-          )
+             SizedBox(
+              height: 10.0,
+              width: 10.0,
+             ),
+             Container(
+              height: 200,
+              width: 150,
+              color: Colors.tealAccent,
+             ),
+             SizedBox(
+              height: 10.0,
+              width: 10.0,
+             ),
+             Container(
+              height: 200,
+              width: 150,
+              color: Colors.indigoAccent,
+             ),
+             SizedBox(
+              height: 10.0,
+              width: 10.0,
+             ),
+             Container(
+              height: 200,
+              width: 150,
+              color: Colors.cyanAccent,
+             ),
+             SizedBox(
+              height: 10.0,
+              width: 10.0,
+             ),
+             Container(
+              height: 200,
+              width: 150,
+              color: Colors.lightGreenAccent,
+             ),
+             SizedBox(
+              height: 10.0,
+              width: 10.0,
+             ),
+             Container(
+              height: 200,
+              width: 200,
+              color: Colors.blueAccent,
+             ),           
+            ],
            ),
          ),
 
