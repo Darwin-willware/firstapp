@@ -9,38 +9,42 @@ class learnToBuild extends StatelessWidget {
     double _volume = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text("image Widget",
+        title: Text("card Widget",
         style: TextStyle( 
           color: Colors.redAccent
         ),),
         backgroundColor: Colors.tealAccent,
       ),
       body:Container(
-        height: 150,
-        width: 300,
-        decoration: BoxDecoration(
-          border: Border.all(width: 2.0),
-          borderRadius: BorderRadius.circular(5.0),
-          image: DecorationImage(
-            image: NetworkImage(
-              'https://media.gcflearnfree.org/ctassets/topics/246/share_flower_fullsize.jpg'
+           child: Center(
+             child: Card(
+              color: Color.fromARGB(179, 15, 178, 219),
+              elevation: 10.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
               ),
+              child: Container(
+                height: 100,
+                padding: EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:<Widget> [
+                    Text('Try not to become a man of success, but rather try to become a man of value',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                    ),
+                    Text('-Albert Einstein',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold
+                    ),
+                    ),
+                  ],
+                ),
               ),
-        ),
-        child: Center(
-          child: Text('Flower',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold
-          ),),
-        ),
-        // child: Image.network(
-        //   'https://media.gcflearnfree.org/ctassets/topics/246/share_flower_fullsize.jpg',
-        //   fit: BoxFit.fill,
-        // ),
-        //width: double.infinity,
-        //child: Image(image:AssetImage('assets/images/oneimg.jpg'),fit: BoxFit.cover,),
-       
+             ),
+           ),
       ),
       );
   }
