@@ -26,26 +26,35 @@ class _learnToBuildState extends State<learnToBuild> {
     return Scaffold(
          appBar: AppBar(
           backgroundColor: Colors.tealAccent,
-          title: Text("TextField Widget",
+          title: Text("DataTable Widget",
           style: TextStyle(
             color: Colors.redAccent,
           ),),
          ),
-         body: Column(
-          children:<Widget> [
-              Text(_value),
-              TextField(
-                decoration: new InputDecoration(
-                  labelText: "Enter Number",
-                  hintText: 'placeholder',
-                  icon: new Icon(Icons.people)),
-                  autocorrect: true,
-                onChanged: _onChanged,
-                onSubmitted: _onSubmit,
-                //keyboardType: TextInputType.number,
+         body: DataTable(
+          columns: [
+            DataColumn(
+              label: Text('Roll No',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.redAccent,
+              ),
+              )
+              ),
+              DataColumn(
+              label: Text('Name',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.redAccent,
+              ),
+              )
               )
           ],
-         ),
+          rows: [
+            DataRow(cells: [DataCell(Text('AE1001')),DataCell(Text("Ram"))]),
+            DataRow(cells: [DataCell(Text('AE1002')),DataCell(Text('Sam'))]),
+          ]
+          )
    );
   }
 }
