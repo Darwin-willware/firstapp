@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
 class learnToBuild extends StatefulWidget {
   const learnToBuild({super.key});
 
@@ -8,50 +11,44 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
+  List data = [];
+  //https://retool.com/api-generator
+  //https://reqres.in/api/users?page=2
+  Future<void> fetchdata() async {
+    final res = await http.get(Uri.parse("https://retoolapi.dev/shA1ty/data"));
+    print(res.statusCode);
+    print(res.body.toString());
+
+    setState(() {
+      data = jsonDecode(res.body);
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    fetchdata();
     return Scaffold(
       appBar: AppBar(
         title: Text('OutlineD Button'),
       ),
-      body: Center(
-        child: OutlinedButton(
-           style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-            if (states.contains(MaterialState.focused)) {
-              return Colors.grey;
-            }
-            return const Color.fromARGB(255, 105, 168, 240);
-          }),
-          overlayColor: MaterialStateProperty.resolveWith<Color>((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Colors.red;
-            }
-            return Colors.transparent;
-          }),
-          side: MaterialStateProperty.resolveWith((states) {
-            Color _borderColor;
-
-            if (states.contains(MaterialState.disabled)) {
-              _borderColor = Colors.greenAccent;
-            } else if (states.contains(MaterialState.pressed)) {
-              _borderColor = Colors.yellow;
-            } else {
-              _borderColor = Colors.pinkAccent;
-            }
-
-            return BorderSide(color: _borderColor, width: 5);
-          }),
-          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
-            return RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
-          }),
-        ),
-          onPressed: (){},
-         child: Padding(
-           padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
-           child: Text("Click Me"),
+      body: 
+      Container(
+        //color: Colors.blueAccent,
+        height: 240,
+        child: ListView.separated(itemBuilder: (context,index){
+          return Container(
+            width: 210,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            ),
+          );
+        }, 
+        separatorBuilder: (context, index) => SizedBox(width: 25,),
+         itemCount: data.length,
+         scrollDirection: Axis.horizontal,
+         padding: EdgeInsets.only(
+          left: 20,
+          right: 20
          ),
-         
          ),
       ),
     );
