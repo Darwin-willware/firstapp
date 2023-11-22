@@ -10,51 +10,53 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
-    String _value = '';
-    void _onChanged(String value){
-      setState(() {
-        _value = value;
-      });
-    }
-    void _onSubmit(String value){
-        setState(() {
-          _value = 'submit:${value}';
-        });
-    }
+    bool mon = false;
+    bool tue = false;
+    bool wed = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
          appBar: AppBar(
           backgroundColor: Colors.tealAccent,
-          title: Text("DataTable Widget",
+          title: Text("CheckBox Widget",
           style: TextStyle(
             color: Colors.redAccent,
           ),),
          ),
-         body: DataTable(
-          columns: [
-            DataColumn(
-              label: Text('Roll No',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.redAccent,
-              ),
-              )
-              ),
-              DataColumn(
-              label: Text('Name',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.redAccent,
-              ),
-              )
-              )
-          ],
-          rows: [
-            DataRow(cells: [DataCell(Text('AE1001')),DataCell(Text("Ram"))]),
-            DataRow(cells: [DataCell(Text('AE1002')),DataCell(Text('Sam'))]),
-          ]
-          )
+         body: Center(
+           child: Row(
+             children:<Widget> [
+               customCheckbox('Mon',mon),
+               customCheckbox('Tue', tue),
+               customCheckbox('Wed', wed)
+             ],
+           ),
+         ),
    );
+  }
+
+  Column customCheckbox(String title,bool val) {
+    return Column(
+              children:<Widget> [
+                Text(title),
+                Checkbox(value: val,
+                 onChanged: (bool? value){
+                  setState(() {
+                    switch(title){
+                      case 'Mon':
+                      mon = value!;
+                      break;
+                      case 'Tue':
+                      tue = value!;
+                      break;
+                      case 'Wed':
+                      wed = value!;
+                      break;
+                    }
+                  });
+                 },
+                 )
+              ],
+             );
   }
 }
