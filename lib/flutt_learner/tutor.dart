@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:io';
+
 class learnToBuild extends StatefulWidget {
   const learnToBuild({super.key});
 
@@ -11,45 +8,41 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
-  List data = [];
-  //https://retool.com/api-generator
-  //https://reqres.in/api/users?page=2
-  Future<void> fetchdata() async {
-    final res = await http.get(Uri.parse("https://retoolapi.dev/shA1ty/data"));
-    print(res.statusCode);
-    print(res.body.toString());
-
-    setState(() {
-      data = jsonDecode(res.body);
-    });
-  }
+  int _currentStep = 0;
   @override
   Widget build(BuildContext context) {
-    fetchdata();
     return Scaffold(
-      appBar: AppBar(
-        title: Text('OutlineD Button'),
-      ),
-      body: 
-      Container(
-        //color: Colors.blueAccent,
-        height: 240,
-        child: ListView.separated(itemBuilder: (context,index){
-          return Container(
-            width: 210,
-            decoration: BoxDecoration(
-              color: Colors.blueGrey,
-            ),
-          );
-        }, 
-        separatorBuilder: (context, index) => SizedBox(width: 25,),
-         itemCount: data.length,
-         scrollDirection: Axis.horizontal,
-         padding: EdgeInsets.only(
-          left: 20,
-          right: 20
-         ),
-         ),
+      appBar: AppBar(title: Text("Stepper Widget"),),
+      body: Center(
+        child: Stepper(
+          onStepTapped: (int newIndex){
+            setState(() {
+              _currentStep = newIndex;
+            });
+          },
+          currentStep: _currentStep,
+          onStepContinue: () {
+            //condition to check if its not the last one
+            if(_currentStep != 2){
+              setState(() {
+                _currentStep +=1;
+              });
+            }
+          },
+          onStepCancel: () {
+            if(_currentStep !=0){
+              setState(() {
+                _currentStep -= 1;
+              });
+            }
+          },
+          steps: const [
+            Step(title: Text("step 001"), content: Text("Information for step 1")),
+            Step(title: Text("step 002"), content: Text("Information for step 2")),
+            Step(title: Text("step 003"), content: Text("Information for step 3")),
+          ], 
+
+        ),
       ),
     );
   }
