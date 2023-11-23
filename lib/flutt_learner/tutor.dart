@@ -15,13 +15,23 @@ class learnToBuild extends StatefulWidget {
     return 'It Works';
   }
 class _learnToBuildState extends State<learnToBuild> {
-   bool _isChecked = false;
+  String selectedText = '';
+  final String _selectableText = 'This is a Selectable Text you can Select it by right now';
+  final TextStyle _styleblue = const TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue
+  );
+  final TextStyle _style = const TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
+  );
   @override
   Widget build(BuildContext context) {
    
     return Scaffold(
      appBar: AppBar(
-      title: Text("CheckBoxListTile Widget",
+      title: Text("SelectableText Widget",
       style: TextStyle(
         color: Colors.black
       ),
@@ -29,22 +39,28 @@ class _learnToBuildState extends State<learnToBuild> {
       backgroundColor: Colors.transparent,
      ),
      body: Center(
-      child: CheckboxListTile(
-        title: const Text('CheckBox List Tile'),
-        value: _isChecked, 
-        onChanged: (bool? newValue){
-          setState(() {
-            _isChecked = newValue!;
-          });
-        },
-        activeColor: Colors.orangeAccent,
-        checkColor: Colors.white,
-        controlAffinity: ListTileControlAffinity.leading,
-        tileColor: Colors.black12,
-        //to set initial state of a checkbox either true as checked or false as unchecked
-        tristate: true,
-        subtitle: const Text('SubTitle'),
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            selectedText,
+          style: _styleblue,
+          ),
+          TextSelectionTheme(
+            data: const TextSelectionThemeData(
+            selectionColor:Colors.yellow,
+          ), 
+          child: SelectableText(_selectableText,
+          style: _style,
+          onSelectionChanged: (selection, cause) {
+            setState(() {
+              selectedText = _selectableText.substring(selection.start,selection.end);
+            });
+          },
+          )
+          )
+        ],
+      ),
      ),
     );
     
