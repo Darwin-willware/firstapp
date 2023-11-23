@@ -22,7 +22,7 @@ class _learnToBuildState extends State<learnToBuild> {
    
     return Scaffold(
       appBar: AppBar(
-        title: Text("Expanded Widget",
+        title:const Text("Flexible Widget",
         style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
@@ -48,28 +48,29 @@ class _learnToBuildState extends State<learnToBuild> {
      body: Center(
         child: Column(
           children: [
-            Expanded(
-              flex: 1,
+            Flexible(
+              //flex: 1,
+              fit: FlexFit.tight,//acta as same as expanded now
               child: 
               Container(
-              color: Colors.red,
-              height: 200,
+              color: const Color.fromARGB(255, 244, 162, 54),
+              height: 50,
             ),
             ),
-            Expanded(
-              flex: 1,
+            Flexible(
+             // flex: 1,
               child: 
               Container(
               color: const Color.fromARGB(255, 54, 244, 54),
-              height: 200,
+              height: 150,
             ),
             ),
-            Expanded(
-              flex: 3,
+            Flexible(
+             // flex: 3,
               child: 
               Container(
               color: const Color.fromARGB(255, 54, 114, 244),
-              height: 200,
+              height: 150,
             ),
             ),
           ],
