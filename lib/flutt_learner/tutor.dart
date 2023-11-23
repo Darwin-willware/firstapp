@@ -19,43 +19,38 @@ Stream<int> generateStream = (() async*{
 })();
 
 class _learnToBuildState extends State<learnToBuild> {
+  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: 
-      Text("Stream Builder Widget",
+      Text("SLIVER Widget",
       style: TextStyle(
-        color: Color.fromARGB(255, 243, 149, 27)
+        color: Color.fromARGB(255, 207, 27, 243)
         ),
         ), 
       elevation: 0.0,
+      backgroundColor: Colors.transparent,
        actions: [
         IconButton(onPressed: (){
           showSearch(context: context,
            delegate: CustomSearchDelegate(),);
         }, 
-        icon: const Icon(Icons.search),
+        icon: const Icon(Icons.search,color: Colors.black,),
         )
        ],
        ),
        body: Center(
-        child: StreamBuilder(
-          stream: generateStream,
-          initialData: 0, 
-          builder: (context,snapshot) {
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return const CircularProgressIndicator.adaptive();
-            }
-            if(snapshot.hasError){
-               return const Text('Error');
-            }
-            else{
-               return Text(
-                snapshot.data.toString(),
-                style: const TextStyle(fontSize: 40),
-               );
-            }
-          }),
+       child: ChoiceChip(
+        avatar: Image.asset('assets/images/fiveimg.jpg'),
+        label: Text("Choice Chip"),
+        selected: _isSelected,
+        onSelected: (newBoolValue){
+          setState(() {
+            _isSelected = newBoolValue;
+          });
+        },
+        ),
        ),
     );
   }
