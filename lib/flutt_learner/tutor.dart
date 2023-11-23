@@ -8,33 +8,26 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
-  String title = "Pop Menu Widget";
-  String firstPage = "First Page";
-    String secondPage = "Second Page";
+  RangeValues _values = const RangeValues(0.1, 0.5);
   @override
   Widget build(BuildContext context) {
-
+     RangeLabels labels = RangeLabels(_values.start.toString(), _values.end.toString(),);
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
-        actions: [
-          PopupMenuButton(itemBuilder: (context)=>[
-            PopupMenuItem(child: Text(firstPage),
-            value: firstPage,
-            ),
-            PopupMenuItem(child: Text(secondPage),
-            value: secondPage,
-            )
-          ],
-          onSelected: (String newValue){
-               setState(() {
-                 title = newValue;
-               });
-          },
-          )
-        ],
+        title: Text("Range Slider Widget"),
       ),
-     
+     body: Center(
+      child: RangeSlider(
+        values: _values,
+        divisions: 8,
+        labels: labels,
+       onChanged: (newValues){
+        setState(() {
+          _values = newValues;
+        });
+       }
+       ),
+     ),
     );
   }
 }
