@@ -15,20 +15,13 @@ class learnToBuild extends StatefulWidget {
     return 'It Works';
   }
 class _learnToBuildState extends State<learnToBuild> {
- 
+ int _counter = 0;
   @override
   Widget build(BuildContext context) {
-    TableRow _tableRow = const TableRow(
-      children: <Widget>[
-        Padding(padding: EdgeInsets.all(10.0),child: Text('cell1'),),
-        Padding(padding: EdgeInsets.all(10.0),child: Text('cell2'),),
-        Padding(padding: EdgeInsets.all(10.0),child: Text('cell3'),),
-        Padding(padding: EdgeInsets.all(10.0),child: Text('cell4'),),
-      ]
-    );
+   
     return Scaffold(
       appBar: AppBar(title: Text(
-        "Table Widget",
+        "GestureDetector Widget",
         style: TextStyle(
           color: Colors.black,
         ),
@@ -37,14 +30,26 @@ class _learnToBuildState extends State<learnToBuild> {
       backgroundColor: Colors.transparent,
       ),
       body:Center(
-           child: Table(
-            border: TableBorder.all(),
-            defaultColumnWidth: const FixedColumnWidth(90.0),
-            children:<TableRow> [
-                 _tableRow,
-                 _tableRow,
-                 _tableRow,_tableRow,_tableRow
-            ],
+           child: GestureDetector(
+            onTap: (){
+              setState(() {
+                _counter += 1;
+              });
+            },
+            child: Container(
+              height: 200,
+              width: 200,
+              color: Colors.blueAccent,
+              child: Center(
+                child: Text(
+                  _counter.toString(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0
+                  ),
+                ),
+              ),
+            ),
            ),
       )
     );
