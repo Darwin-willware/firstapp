@@ -8,26 +8,52 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
-  RangeValues _values = const RangeValues(0.1, 0.5);
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
-     RangeLabels labels = RangeLabels(_values.start.toString(), _values.end.toString(),);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Range Slider Widget"),
+        title: Text("Visibility Widget"),
+        actions: [
+          TextButton(
+            onPressed: (){
+              setState(() {
+                isVisible = !isVisible;
+              });
+            },
+           child: Text("Hide center",
+           style: TextStyle(
+            color: Colors.black
+           ),),
+           )
+        ],
       ),
-     body: Center(
-      child: RangeSlider(
-        values: _values,
-        divisions: 8,
-        labels: labels,
-       onChanged: (newValues){
-        setState(() {
-          _values = newValues;
-        });
-       }
-       ),
-     ),
+     body: SizedBox(
+      width: double.infinity,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/threeimg.jpg',
+              height: 100,
+            ),
+            Visibility(
+              visible: isVisible,
+              child: Image.asset(
+                'assets/images/twoimg.jpg',
+                height: 200,
+                
+              ),
+            ),
+            Image.asset(
+              'assets/images/fourimg.jpg',
+              height: 100,
+            )
+          ],
+        ),
+      ),
+     )
     );
   }
 }
