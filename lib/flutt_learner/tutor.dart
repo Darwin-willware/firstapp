@@ -8,39 +8,26 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
-  int _currentStep = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Stepper Widget"),),
+      appBar: AppBar(title: 
+      Text("FittedBox Widget",style: TextStyle(color: Colors.black),), 
+      elevation: 0.0, backgroundColor: Colors.transparent,),
       body: Center(
-        child: Stepper(
-          onStepTapped: (int newIndex){
-            setState(() {
-              _currentStep = newIndex;
-            });
-          },
-          currentStep: _currentStep,
-          onStepContinue: () {
-            //condition to check if its not the last one
-            if(_currentStep != 2){
-              setState(() {
-                _currentStep +=1;
-              });
-            }
-          },
-          onStepCancel: () {
-            if(_currentStep !=0){
-              setState(() {
-                _currentStep -= 1;
-              });
-            }
-          },
-          steps: const [
-            Step(title: Text("step 001"), content: Text("Information for step 1")),
-            Step(title: Text("step 002"), content: Text("Information for step 2")),
-            Step(title: Text("step 003"), content: Text("Information for step 3")),
-          ], 
+        child: Container(
+          width: 300,
+          height: 50,
+          color: Colors.red,
+          padding: EdgeInsets.all(10.0),
+          child: FittedBox(
+            child: const Text("FLUTTER MAPP",
+            style: TextStyle(
+              fontSize: 100,
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            ),),
+          ),
 
         ),
       ),
