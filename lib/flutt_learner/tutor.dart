@@ -8,52 +8,38 @@ class learnToBuild extends StatefulWidget {
 }
 
 class _learnToBuildState extends State<learnToBuild> {
-  bool isVisible = true;
+  int _currentIndex = 0;
+  List<Widget> body  = const [
+    Icon(Icons.home),
+    Icon(Icons.video_file),
+    Icon(Icons.add),
+    Icon(Icons.subscriptions),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Visibility Widget"),
-        actions: [
-          TextButton(
-            onPressed: (){
-              setState(() {
-                isVisible = !isVisible;
-              });
-            },
-           child: Text("Hide center",
-           style: TextStyle(
-            color: Colors.black
-           ),),
-           )
-        ],
+        title: Text("Bottom Navigation Bar Widget"),
+        
       ),
-     body: SizedBox(
-      width: double.infinity,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              'assets/images/threeimg.jpg',
-              height: 100,
-            ),
-            Visibility(
-              visible: isVisible,
-              child: Image.asset(
-                'assets/images/twoimg.jpg',
-                height: 200,
-                
-              ),
-            ),
-            Image.asset(
-              'assets/images/fourimg.jpg',
-              height: 100,
-            )
-          ],
-        ),
+     body: Center(
+      child: body[_currentIndex],
+     ),
+     bottomNavigationBar: BottomNavigationBar(
+      type : BottomNavigationBarType.fixed,
+      items: const[
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+         BottomNavigationBarItem(icon: Icon(Icons.video_file),label: 'Videos'),
+          BottomNavigationBarItem(icon: Icon(Icons.add),label: 'Add'),
+           BottomNavigationBarItem(icon: Icon(Icons.subscriptions),label: 'SubScriptions'),
+      ],
+      currentIndex: _currentIndex,
+      onTap: (int newIndex){
+       setState(() {
+          _currentIndex = newIndex;
+       });
+      },
       ),
-     )
     );
   }
 }
