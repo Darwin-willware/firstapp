@@ -32,7 +32,7 @@ class _learnToBuildState extends State<learnToBuild> {
     ];
     return Scaffold(
       appBar: AppBar(title: Text(
-        "Stack Widget",
+        "Positioned Widget",
         style: TextStyle(
           color: Colors.black,
         ),
@@ -43,15 +43,41 @@ class _learnToBuildState extends State<learnToBuild> {
       body:Center(
         child: Stack(
           children: [
-            Center(
-              child: Image.asset("assets/images/fourimg.jpg"),
-            ),
-            Center(
-              child: Image.asset(
-                'assets/images/oneimg.jpg',
-                width: 100,
-              ),
-            )
+           Positioned(
+            left: 10,
+            top: 10,
+            child: 
+           Image.asset("assets/images/fiveimg.jpg",
+           width: 250,)
+           ),
+           Positioned(
+            left: 30,
+            top: 30,
+            child: 
+           Image.asset("assets/images/fiveimg.jpg",
+           width: 250,)
+           ),
+           Positioned(
+            left: 50,
+            top: 50,
+            child: 
+           Image.asset("assets/images/fiveimg.jpg",
+           width: 250,)
+           ),
+           Positioned(
+            left: 70,
+            top: 70,
+            child: 
+           Image.asset("assets/images/fiveimg.jpg",
+           width: 250,)
+           ),
+           Positioned(
+            left: 90,
+            top: 90,
+            child: 
+           Image.asset("assets/images/fiveimg.jpg",
+           width: 250,)
+           ),
           ],
         ),
       )
