@@ -19,42 +19,25 @@ class _learnToBuildState extends State<learnToBuild> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("PageView Widget"),
+        title: Text("ShowModalBottomSheet Widget"),
         
       ),
-     body: PageView(
-      children: [
-        Container(
-          color: Colors.blue,
-          child: const Center(
-            child: Text("Page-001",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 60,
-            ),),
-          ),
-        ),
-                Container(
-          color: Colors.green,
-          child: const Center(
-            child: Text("Page-001",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 60,
-            ),),
-          ),
-        ),
-                Container(
-          color: Colors.orangeAccent,
-          child: const Center(
-            child: Text("Page-001",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 60,
-            ),),
-          ),
-        )
-      ],
+     body: ElevatedButton(
+      onPressed: (){
+        showModalBottomSheet(context: context, 
+        builder: (BuildContext context){
+          return SizedBox(
+            height: 400,
+            child: Center(
+              child: ElevatedButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text("Close")),
+            ),
+          );
+        }
+        );
+      }, 
+     child: const Text("Modal Bottom Sheet"),
      )
     );
   }
