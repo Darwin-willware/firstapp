@@ -16,12 +16,13 @@ class learnToBuild extends StatefulWidget {
   }
 class _learnToBuildState extends State<learnToBuild> {
  int _counter = 0;
+ Color boxColor = Colors.blueAccent;
   @override
   Widget build(BuildContext context) {
    
     return Scaffold(
       appBar: AppBar(title: Text(
-        "GestureDetector Widget",
+        "InkWell Widget",
         style: TextStyle(
           color: Colors.black,
         ),
@@ -30,16 +31,26 @@ class _learnToBuildState extends State<learnToBuild> {
       backgroundColor: Colors.transparent,
       ),
       body:Center(
-           child: GestureDetector(
+           child: InkWell(
             onTap: (){
               setState(() {
                 _counter += 1;
               });
             },
-            child: Container(
+            onDoubleTap: () {
+              setState(() {
+                boxColor = Colors.deepOrangeAccent;
+              });
+            },
+            onLongPress: () {
+              setState(() {
+                boxColor = Colors.tealAccent;
+              });
+            },
+            child: Ink(
               height: 200,
               width: 200,
-              color: Colors.blueAccent,
+              color:boxColor,
               child: Center(
                 child: Text(
                   _counter.toString(),
