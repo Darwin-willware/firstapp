@@ -22,7 +22,7 @@ class _learnToBuildState extends State<learnToBuild> {
    
     return Scaffold(
       appBar: AppBar(
-        title: Text("AnimatedCrossfade Widget",
+        title: Text("Expanded Widget",
         style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
@@ -46,20 +46,34 @@ class _learnToBuildState extends State<learnToBuild> {
         ],
       ),
      body: Center(
-      child: AnimatedCrossFade(
-        firstChild: Image.asset(
-          'assets/images/twoimg.jpg',
-        width: 350,
-       // height: 100,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: 
+              Container(
+              color: Colors.red,
+              height: 200,
+            ),
+            ),
+            Expanded(
+              flex: 1,
+              child: 
+              Container(
+              color: const Color.fromARGB(255, 54, 244, 54),
+              height: 200,
+            ),
+            ),
+            Expanded(
+              flex: 3,
+              child: 
+              Container(
+              color: const Color.fromARGB(255, 54, 114, 244),
+              height: 200,
+            ),
+            ),
+          ],
         ),
-        secondChild: Image.asset(
-          'assets/images/oneimg.jpg',
-          width: 200,
-          height: 200,
-        ),
-        crossFadeState: _bool ? CrossFadeState.showFirst : CrossFadeState.showSecond ,
-        duration: const Duration(seconds: 2),
-      ),
      )
     );
   }
