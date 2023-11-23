@@ -19,27 +19,43 @@ class _learnToBuildState extends State<learnToBuild> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bottom Navigation Bar Widget"),
+        title: Text("PageView Widget"),
         
       ),
-     body: Center(
-      child: body[_currentIndex],
-     ),
-     bottomNavigationBar: BottomNavigationBar(
-      type : BottomNavigationBarType.fixed,
-      items: const[
-        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-         BottomNavigationBarItem(icon: Icon(Icons.video_file),label: 'Videos'),
-          BottomNavigationBarItem(icon: Icon(Icons.add),label: 'Add'),
-           BottomNavigationBarItem(icon: Icon(Icons.subscriptions),label: 'SubScriptions'),
+     body: PageView(
+      children: [
+        Container(
+          color: Colors.blue,
+          child: const Center(
+            child: Text("Page-001",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 60,
+            ),),
+          ),
+        ),
+                Container(
+          color: Colors.green,
+          child: const Center(
+            child: Text("Page-001",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 60,
+            ),),
+          ),
+        ),
+                Container(
+          color: Colors.orangeAccent,
+          child: const Center(
+            child: Text("Page-001",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 60,
+            ),),
+          ),
+        )
       ],
-      currentIndex: _currentIndex,
-      onTap: (int newIndex){
-       setState(() {
-          _currentIndex = newIndex;
-       });
-      },
-      ),
+     )
     );
   }
 }
