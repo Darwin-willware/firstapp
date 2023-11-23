@@ -23,36 +23,21 @@ class _learnToBuildState extends State<learnToBuild> {
       //this widget will wait for data before displaying something on view 
       //Futurebuilder is used to build the view dynamically depends upon the data that we get asynchronously
       appBar: AppBar(
-        title: const Text("FutureBuilder",
+        title: const Text("GridPAPer",
         style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
       ),
-      body: Center(
-        child: FutureBuilder(
-          future: getData(),
-           builder: (Context,snapshot){
-               if(snapshot.connectionState == ConnectionState.waiting){
-                 return const CircularProgressIndicator.adaptive();
-               }
-               if(snapshot.hasError){
-                    return Text(snapshot.error.toString());
-               } else {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(snapshot.data.toString(),),
-                    ElevatedButton(onPressed: (){
-                      setState(() {
-                        
-                      });
-                    }, child: const Text("refresh"))
-                  ],
-                );
-               }
-           }
-           ),
-      ),
+      body: const SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: GridPaper(
+          color: Color.fromARGB(255, 47, 48, 45),
+          divisions: 1,
+          interval: 200,
+          subdivisions: 2,
+        ),
+      )
     );
      
   }
