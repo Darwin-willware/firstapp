@@ -15,37 +15,38 @@ class learnToBuild extends StatefulWidget {
     return 'It Works';
   }
 class _learnToBuildState extends State<learnToBuild> {
- int _counter = 0;
- Color boxColor = Colors.blueAccent;
+   bool _isChecked = false;
   @override
   Widget build(BuildContext context) {
    
     return Scaffold(
-      // appBar: AppBar(title: Text(
-      //   "Interactiveviewer Widget",
-      //   style: TextStyle(
-      //     color: Colors.black,
-      //   ),
-        
-      // ),
-      // backgroundColor: Colors.transparent,
-      // ),
-      backgroundColor: Colors.deepOrangeAccent,
-      body: InteractiveViewer(
-        boundaryMargin: const EdgeInsets.all(double.infinity),
-        child: Scaffold(
-        appBar: AppBar(
-          title: Text("InterActiveViewer Widget"),
+     appBar: AppBar(
+      title: Text("CheckBoxListTile Widget",
+      style: TextStyle(
+        color: Colors.black
+      ),
+      ),
+      backgroundColor: Colors.transparent,
+     ),
+     body: Center(
+      child: CheckboxListTile(
+        title: const Text('CheckBox List Tile'),
+        value: _isChecked, 
+        onChanged: (bool? newValue){
+          setState(() {
+            _isChecked = newValue!;
+          });
+        },
+        activeColor: Colors.orangeAccent,
+        checkColor: Colors.white,
+        controlAffinity: ListTileControlAffinity.leading,
+        tileColor: Colors.black12,
+        //to set initial state of a checkbox either true as checked or false as unchecked
+        tristate: true,
+        subtitle: const Text('SubTitle'),
         ),
-      )),
-      // body:Center(
-      //      child: InteractiveViewer(
-      //       maxScale: 5,
-      //       child: Image.asset('assets/images/twoimg.jpg')
-      //       ),
-      // )
+     ),
     );
-   //WillpopScope is used to disable the back button on Android devices
     
   }
 }
