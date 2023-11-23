@@ -18,24 +18,47 @@ class _learnToBuildState extends State<learnToBuild> {
  
   @override
   Widget build(BuildContext context) {
-   //WillpopScope is used to disable the back button on Android devices
+    List<Widget> imagesList = [
+      Image.asset("assets/images/oneimg.jpg",
+      height: 100,),
+            Image.asset("assets/images/twoimg.jpg",
+      height: 100,),
+            Image.asset("assets/images/threeimg.jpg",
+      height: 100,),
+            Image.asset("assets/images/fourimg.jpg",
+      height: 100,),
+            Image.asset("assets/images/fiveimg.jpg",
+      height: 100,),
+    ];
     return Scaffold(
-      //this widget will wait for data before displaying something on view 
-      //Futurebuilder is used to build the view dynamically depends upon the data that we get asynchronously
-      appBar: AppBar(
-        title: const Text("ToolTip Widget",
-        style: TextStyle(color: Colors.black),
+      appBar: AppBar(title: Text(
+        "spread Operator",
+        style: TextStyle(
+          color: Colors.black,
         ),
-        backgroundColor: Colors.transparent,
+        
+      ),
+      backgroundColor: Colors.transparent,
       ),
       body: Center(
-        child: Tooltip(
-          message: "Message from NoWhere to EveryWhere",
-          child: Image.asset('assets/images/fourimg.jpg'),
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset("assets/images/oneimg.jpg"),
+                ...imagesList
+              ],
+            ),
+          ),
+          // child: Column(
+          //   children: imagesList,
+          // ),
         ),
-      )
+      ),
     );
-     
+   //WillpopScope is used to disable the back button on Android devices
+    
   }
 }
 
