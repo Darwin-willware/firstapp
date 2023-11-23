@@ -19,31 +19,37 @@ Stream<int> generateStream = (() async*{
 })();
 
 class _learnToBuildState extends State<learnToBuild> {
-  TimeOfDay? time = const TimeOfDay(hour: 12, minute: 12);
+  DateTime _dateTime = DateTime(2100);
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Show Time Picker  Widget"),
+        title: Text("Show Date Picker  Widget"),
       ),
-      body:Center(
-        child: Text('${time!.hour.toString()}:${time!.minute.toString()}',
-        style: const TextStyle(fontSize: 60),
-        ),
+     body: Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '${_dateTime.day}-${_dateTime.month}-${_dateTime.year}',
+            style: const TextStyle(fontSize: 40),
+          ),
+          ElevatedButton(
+            onPressed: () async{
+              DateTime? _newDate = await showDatePicker(context: context,
+               initialDate: _dateTime, 
+               firstDate: DateTime(1800), lastDate: DateTime(3000));
+               if(_newDate != null){
+                setState(() {
+                  _dateTime = _newDate;
+                });
+               }
+            }, 
+            child: const Text("Get Date"))
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.access_time_outlined),
-        onPressed: () async{
-          TimeOfDay ? newTime = await showTimePicker(context: context,
-           initialTime: time!,);
-           if(newTime != null){
-            setState(() {
-              time = newTime;
-            });
-           }
-        }
-      ),
+     ),
     );
   }
 }
