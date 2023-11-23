@@ -21,48 +21,29 @@ class _learnToBuildState extends State<learnToBuild> {
   Widget build(BuildContext context) {
    
     return Scaffold(
-      appBar: AppBar(title: Text(
-        "InkWell Widget",
-        style: TextStyle(
-          color: Colors.black,
-        ),
+      // appBar: AppBar(title: Text(
+      //   "Interactiveviewer Widget",
+      //   style: TextStyle(
+      //     color: Colors.black,
+      //   ),
         
-      ),
-      backgroundColor: Colors.transparent,
-      ),
-      body:Center(
-           child: InkWell(
-            onTap: (){
-              setState(() {
-                _counter += 1;
-              });
-            },
-            onDoubleTap: () {
-              setState(() {
-                boxColor = Colors.deepOrangeAccent;
-              });
-            },
-            onLongPress: () {
-              setState(() {
-                boxColor = Colors.tealAccent;
-              });
-            },
-            child: Ink(
-              height: 200,
-              width: 200,
-              color:boxColor,
-              child: Center(
-                child: Text(
-                  _counter.toString(),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0
-                  ),
-                ),
-              ),
-            ),
-           ),
-      )
+      // ),
+      // backgroundColor: Colors.transparent,
+      // ),
+      backgroundColor: Colors.deepOrangeAccent,
+      body: InteractiveViewer(
+        boundaryMargin: const EdgeInsets.all(double.infinity),
+        child: Scaffold(
+        appBar: AppBar(
+          title: Text("InterActiveViewer Widget"),
+        ),
+      )),
+      // body:Center(
+      //      child: InteractiveViewer(
+      //       maxScale: 5,
+      //       child: Image.asset('assets/images/twoimg.jpg')
+      //       ),
+      // )
     );
    //WillpopScope is used to disable the back button on Android devices
     
