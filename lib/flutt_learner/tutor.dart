@@ -35,13 +35,20 @@ class _learnToBuildState extends State<learnToBuild> {
       List<Widget> _list= [_image,_image,_image,_image,_image];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wrap Widget"),
+        title: Text("Expansion Tile Widget"),
       ),
-      body:  Center(
-        child: Wrap(
-          children: _list,
+      body: const ExpansionTile(
+           title: Text('See more'),
+           leading: Icon(Icons.info),
+           backgroundColor: Colors.black12,
+           children: [
+            ListTile(title: Text("First"),),
+            ListTile(title: Text("Second"),),
+            ListTile(title: Text("Pre-Final"),),
+            ListTile(title: Text("Final"),),
+           ],
         ),
-      ),
+      
     );
   }
 }
