@@ -32,7 +32,7 @@ class _learnToBuildState extends State<learnToBuild> {
     ];
     return Scaffold(
       appBar: AppBar(title: Text(
-        "spread Operator",
+        "Stack Widget",
         style: TextStyle(
           color: Colors.black,
         ),
@@ -40,22 +40,21 @@ class _learnToBuildState extends State<learnToBuild> {
       ),
       backgroundColor: Colors.transparent,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset("assets/images/oneimg.jpg"),
-                ...imagesList
-              ],
+      body:Center(
+        child: Stack(
+          children: [
+            Center(
+              child: Image.asset("assets/images/fourimg.jpg"),
             ),
-          ),
-          // child: Column(
-          //   children: imagesList,
-          // ),
+            Center(
+              child: Image.asset(
+                'assets/images/oneimg.jpg',
+                width: 100,
+              ),
+            )
+          ],
         ),
-      ),
+      )
     );
    //WillpopScope is used to disable the back button on Android devices
     
