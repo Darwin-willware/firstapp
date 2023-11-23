@@ -19,36 +19,31 @@ Stream<int> generateStream = (() async*{
 })();
 
 class _learnToBuildState extends State<learnToBuild> {
-  bool _isSelected = false;
+  TimeOfDay? time = const TimeOfDay(hour: 12, minute: 12);
   @override
   Widget build(BuildContext context) {
-    Widget _image =Padding(
-      padding: EdgeInsets.all(8.0),
-      child: 
-      Image.asset(
-        'assets/images/fourimg.jpg',
-      height: 100,
-      width: 100,
-      fit: BoxFit.cover,
-      ),
-      );
-      List<Widget> _list= [_image,_image,_image,_image,_image];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Expansion Tile Widget"),
+        title: Text("Show Time Picker  Widget"),
       ),
-      body: const ExpansionTile(
-           title: Text('See more'),
-           leading: Icon(Icons.info),
-           backgroundColor: Colors.black12,
-           children: [
-            ListTile(title: Text("First"),),
-            ListTile(title: Text("Second"),),
-            ListTile(title: Text("Pre-Final"),),
-            ListTile(title: Text("Final"),),
-           ],
+      body:Center(
+        child: Text('${time!.hour.toString()}:${time!.minute.toString()}',
+        style: const TextStyle(fontSize: 60),
         ),
-      
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.access_time_outlined),
+        onPressed: () async{
+          TimeOfDay ? newTime = await showTimePicker(context: context,
+           initialTime: time!,);
+           if(newTime != null){
+            setState(() {
+              time = newTime;
+            });
+           }
+        }
+      ),
     );
   }
 }
