@@ -22,31 +22,26 @@ class _learnToBuildState extends State<learnToBuild> {
   bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
+    Widget _image =Padding(
+      padding: EdgeInsets.all(8.0),
+      child: 
+      Image.asset(
+        'assets/images/fourimg.jpg',
+      height: 100,
+      width: 100,
+      fit: BoxFit.cover,
+      ),
+      );
+      List<Widget> _list= [_image,_image,_image,_image,_image];
     return Scaffold(
-      
-       body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            pinned: true,
-            floating: false,
-            snap: false,
-            title: Text('Flutter'),
-            expandedHeight: 150.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('MAPP'),
-              centerTitle: true,
-            ),
-          ),
-          SliverList(delegate: SliverChildListDelegate(
-            [
-              const Text("SLIVER",
-              style: TextStyle(fontSize: 600),
-              ),
-            ],
-          ),
-          ),
-        ],
-       ),
+      appBar: AppBar(
+        title: Text("Wrap Widget"),
+      ),
+      body:  Center(
+        child: Wrap(
+          children: _list,
+        ),
+      ),
     );
   }
 }
