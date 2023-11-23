@@ -23,34 +23,29 @@ class _learnToBuildState extends State<learnToBuild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: 
-      Text("SLIVER Widget",
-      style: TextStyle(
-        color: Color.fromARGB(255, 207, 27, 243)
-        ),
-        ), 
-      elevation: 0.0,
-      backgroundColor: Colors.transparent,
-       actions: [
-        IconButton(onPressed: (){
-          showSearch(context: context,
-           delegate: CustomSearchDelegate(),);
-        }, 
-        icon: const Icon(Icons.search,color: Colors.black,),
-        )
-       ],
-       ),
-       body: Center(
-       child: ChoiceChip(
-        avatar: Image.asset('assets/images/fiveimg.jpg'),
-        label: Text("Choice Chip"),
-        selected: _isSelected,
-        onSelected: (newBoolValue){
-          setState(() {
-            _isSelected = newBoolValue;
-          });
-        },
-        ),
+      
+       body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            pinned: true,
+            floating: false,
+            snap: false,
+            title: Text('Flutter'),
+            expandedHeight: 150.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text('MAPP'),
+              centerTitle: true,
+            ),
+          ),
+          SliverList(delegate: SliverChildListDelegate(
+            [
+              const Text("SLIVER",
+              style: TextStyle(fontSize: 600),
+              ),
+            ],
+          ),
+          ),
+        ],
        ),
     );
   }
