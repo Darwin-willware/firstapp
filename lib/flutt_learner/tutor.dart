@@ -7,18 +7,28 @@ class learnToBuild extends StatefulWidget {
   State<learnToBuild> createState() => _learnToBuildState();
 }
 
+
+//FAKE FIREBASE STREAM TO GET STREAM OF INPUTS ONE AFTER ANOTHEER
+Stream<int> generateStream = (() async*{
+  await Future<void>.delayed(const Duration(seconds:2));
+  yield 1;
+  await Future<void>.delayed(const Duration(seconds:4));
+  yield 2;
+  await Future<void>.delayed(const Duration(seconds:1));
+  yield 3;
+})();
+
 class _learnToBuildState extends State<learnToBuild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: 
-      Text("Adaptive Widget",
+      Text("Stream Builder Widget",
       style: TextStyle(
-        color: Colors.black
+        color: Color.fromARGB(255, 243, 149, 27)
         ),
         ), 
       elevation: 0.0,
-       backgroundColor: Colors.transparent,
        actions: [
         IconButton(onPressed: (){
           showSearch(context: context,
@@ -29,27 +39,24 @@ class _learnToBuildState extends State<learnToBuild> {
        ],
        ),
        body: Center(
-        child: Column(
-          children: [
-            Slider.adaptive(value: 1,
-             onChanged: (double newValue) {
-              
-             },
-             ),
-             SwitchListTile.adaptive(
-              value: true,
-               onChanged: (bool newValue){}
-               ),
-            Switch.adaptive(
-              value: true, 
-              onChanged:( bool newValue){}
-              ),
-              Icon(Icons.adaptive.share),
-              const CircularProgressIndicator.adaptive(),
-          ],
-        ),
+        child: StreamBuilder(
+          stream: generateStream,
+          initialData: 0, 
+          builder: (context,snapshot) {
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return const CircularProgressIndicator.adaptive();
+            }
+            if(snapshot.hasError){
+               return const Text('Error');
+            }
+            else{
+               return Text(
+                snapshot.data.toString(),
+                style: const TextStyle(fontSize: 40),
+               );
+            }
+          }),
        ),
-      
     );
   }
 }
