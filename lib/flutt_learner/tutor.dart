@@ -32,7 +32,7 @@ class _learnToBuildState extends State<learnToBuild> {
     ];
     return Scaffold(
       appBar: AppBar(title: Text(
-        "Positioned Widget",
+        "Alert Dialog Widget",
         style: TextStyle(
           color: Colors.black,
         ),
@@ -41,45 +41,27 @@ class _learnToBuildState extends State<learnToBuild> {
       backgroundColor: Colors.transparent,
       ),
       body:Center(
-        child: Stack(
-          children: [
-           Positioned(
-            left: 10,
-            top: 10,
-            child: 
-           Image.asset("assets/images/fiveimg.jpg",
-           width: 250,)
-           ),
-           Positioned(
-            left: 30,
-            top: 30,
-            child: 
-           Image.asset("assets/images/fiveimg.jpg",
-           width: 250,)
-           ),
-           Positioned(
-            left: 50,
-            top: 50,
-            child: 
-           Image.asset("assets/images/fiveimg.jpg",
-           width: 250,)
-           ),
-           Positioned(
-            left: 70,
-            top: 70,
-            child: 
-           Image.asset("assets/images/fiveimg.jpg",
-           width: 250,)
-           ),
-           Positioned(
-            left: 90,
-            top: 90,
-            child: 
-           Image.asset("assets/images/fiveimg.jpg",
-           width: 250,)
-           ),
-          ],
-        ),
+        child: ElevatedButton(
+          onPressed: (){
+            showDialog(
+              context: context,
+               builder: (context) => AlertDialog(
+                actions: [
+                  TextButton(
+                    onPressed: (){
+                      Navigator.of(context).pop();
+                  }, child: Text("I Am Alert"))
+                ],
+                title: const Text("From Flutter"),
+                contentPadding: EdgeInsets.all(20.0),
+                content: const Text('This is the Alert Dialog from Flutter'),
+               )
+               );
+          }, 
+          child: Text("show Alert",
+          style: TextStyle(
+            color: Colors.tealAccent
+          ),)),
       )
     );
    //WillpopScope is used to disable the back button on Android devices
