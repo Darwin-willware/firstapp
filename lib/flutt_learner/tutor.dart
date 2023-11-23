@@ -12,7 +12,7 @@ class _learnToBuildState extends State<learnToBuild> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: 
-      Text("showSearch Widget",
+      Text("Adaptive Widget",
       style: TextStyle(
         color: Colors.black
         ),
@@ -27,6 +27,27 @@ class _learnToBuildState extends State<learnToBuild> {
         icon: const Icon(Icons.search),
         )
        ],
+       ),
+       body: Center(
+        child: Column(
+          children: [
+            Slider.adaptive(value: 1,
+             onChanged: (double newValue) {
+              
+             },
+             ),
+             SwitchListTile.adaptive(
+              value: true,
+               onChanged: (bool newValue){}
+               ),
+            Switch.adaptive(
+              value: true, 
+              onChanged:( bool newValue){}
+              ),
+              Icon(Icons.adaptive.share),
+              const CircularProgressIndicator.adaptive(),
+          ],
+        ),
        ),
       
     );
